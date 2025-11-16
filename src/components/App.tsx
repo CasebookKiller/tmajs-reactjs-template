@@ -13,7 +13,7 @@ export function App() {
       appearance={isDark ? 'dark' : 'light'}
       platform={['macos', 'ios'].includes(lp.tgWebAppPlatform) ? 'ios' : 'base'}
     >
-      <HashRouter>
+      <HashRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
         <Routes>
           {routes.map((route) => <Route key={route.path} {...route} />)}
           <Route path="*" element={<Navigate to="/"/>}/>

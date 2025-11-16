@@ -1,4 +1,4 @@
-// Include Telegram UI styles first to allow our code override the package CSS.
+// Сначала включите стили пользовательского интерфейса Telegram, чтобы наш код мог переопределять CSS пакета.
 import '@telegram-apps/telegram-ui/dist/styles.css';
 
 import ReactDOM from 'react-dom/client';
@@ -11,7 +11,7 @@ import { init } from '@/init.ts';
 
 import './index.css';
 
-// Mock the environment in case, we are outside Telegram.
+// Имитируем среду на случай, если мы находимся за пределами Telegram.
 import './mockEnv.ts';
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
@@ -22,7 +22,7 @@ try {
   const debug = (launchParams.tgWebAppStartParam || '').includes('debug')
     || import.meta.env.DEV;
 
-  // Configure all application dependencies.
+  // Настройте все зависимости приложения.
   await init({
     debug,
     eruda: debug && ['ios', 'android'].includes(platform),

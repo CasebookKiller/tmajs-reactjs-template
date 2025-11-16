@@ -1,8 +1,9 @@
 import { emitEvent, isTMA, mockTelegramEnv } from '@tma.js/sdk-react';
 
-// It is important, to mock the environment only for development purposes. When building the
-// application, import.meta.env.DEV will become false, and the code inside will be tree-shaken,
-// so you will not see it in your final bundle.
+// Важно имитировать среду только в целях разработки.
+// При сборке приложения import.meta.env.DEV станет ложным,
+// а код внутри него будет удалён,
+// поэтому вы не увидите его в итоговом пакете.
 if (import.meta.env.DEV) {
   if (!await isTMA('complete')) {
     const themeParams = {
@@ -24,7 +25,7 @@ if (import.meta.env.DEV) {
 
     mockTelegramEnv({
       onEvent(e) {
-        // Here you can write your own handlers for all known Telegram Mini Apps methods:
+        // Здесь вы можете написать собственные обработчики для всех известных методов Telegram Mini Apps:
         // https://docs.telegram-mini-apps.com/platform/methods
         if (e.name === 'web_app_request_theme') {
           return emitEvent('theme_changed', { theme_params: themeParams });
@@ -45,27 +46,37 @@ if (import.meta.env.DEV) {
         }
       },
       launchParams: new URLSearchParams([
-        // Discover more launch parameters:
+        // Узнайте больше о параметрах запуска: 
         // https://docs.telegram-mini-apps.com/platform/launch-parameters#parameters-list
         ['tgWebAppThemeParams', JSON.stringify(themeParams)],
-        // Your init data goes here. Learn more about it here:
+        // Здесь указываются ваши инициализированные данные. Подробнее об этом можно узнать здесь:
         // https://docs.telegram-mini-apps.com/platform/init-data#parameters-list
         //
-        // Note that to make sure, you are using a valid init data, you must pass it exactly as it
-        // is sent from the Telegram application. The reason is in case you will sort its keys
-        // (auth_date, hash, user, etc.) or values your own way, init data validation will more
-        // likely to fail on your server side. So, to make sure you are working with a valid init
-        // data, it is better to take a real one from your application and paste it here. It should
-        // look something like this (a correctly encoded URL search params):
+        // Обратите внимание, что для корректной инициализации данных необходимо передавать их в том виде, в котором они
+        // отправляются из приложения Telegram. Это необходимо на случай, если вы будете сортировать их ключи
+        // (auth_date, hash, user и т.д.) или значения по-своему, проверка исходных данных будет более
+        // скорее всего, произойдет сбой на стороне вашего сервера. Итак, чтобы убедиться, что вы работаете с действительным инициализатором
+        // data, лучше взять настоящий файл из вашего приложения и вставить его сюда. Это должно быть
+        // выглядит примерно так (параметры поиска по правильно закодированному URL-адресу):
         // ```
         // user=%7B%22id%22%3A279058397%2C%22first_name%22%3A%22Vladislav%22%2C%22last_name%22...
         // ```
-        // But in case you don't really need a valid init data, use this one:
         ['tgWebAppData', new URLSearchParams([
           ['auth_date', (new Date().getTime() / 1000 | 0).toString()],
-          ['hash', 'some-hash'],
-          ['signature', 'some-signature'],
-          ['user', JSON.stringify({ id: 1, first_name: 'Vladislav' })],
+          ['hash', import.meta.env.VITE_MOCK_HASG || 'some-hash'],
+          ['signature', import.meta.env.VITE_MOCK_SIGNATURE || 'some-signature'],
+          ['start_param', import.meta.env.VITE_MOCK_START_PARAM || 'debug'],
+          ['chat_instance', import.meta.env.VITE_MOCK_CHAT_INSTANCE || '8428209589180549439'],
+          ['chat_type', 'sender'],
+          ['user', JSON.stringify({
+            id: Number(import.meta.env.VITE_MOCK_USER_ID) || 99281932,
+            first_name: 'Ivan',
+            last_name: 'Petrov',
+            username: 'petrov',
+            language_code: 'ru',
+            is_premium: true,
+            allows_write_to_pm: true,
+          })],
         ]).toString()],
         ['tgWebAppVersion', '8.4'],
         ['tgWebAppPlatform', 'tdesktop'],
@@ -73,7 +84,7 @@ if (import.meta.env.DEV) {
     });
 
     console.info(
-      '⚠️ As long as the current environment was not considered as the Telegram-based one, it was mocked. Take a note, that you should not do it in production and current behavior is only specific to the development process. Environment mocking is also applied only in development mode. So, after building the application, you will not see this behavior and related warning, leading to crashing the application outside Telegram.',
+      '⚠️ До тех пор, пока текущая среда не считалась средой на основе Telegram, она имитировалась. Обратите внимание, что этого не следует делать в рабочей среде, а текущее поведение характерно только для процесса разработки. Имитация среды также применяется только в режиме разработки. Таким образом, после сборки приложения вы не увидите такого поведения и связанного с ним предупреждения, которое приводит к сбою приложения вне Telegram.',
     );
   }
 }

@@ -13,26 +13,26 @@ import {
 } from '@tma.js/sdk-react';
 
 /**
- * Initializes the application and configures its dependencies.
+ * Инициализация приложения и настройка его зависимостей.
  */
 export async function init(options: {
   debug: boolean;
   eruda: boolean;
   mockForMacOS: boolean;
 }): Promise<void> {
-  // Set @telegram-apps/sdk-react debug mode and initialize it.
+  // Установите режим отладки @telegram-apps/sdk-react и инициализируйте его.
   setDebug(options.debug);
   initSDK();
 
-  // Add Eruda if needed.
+  // При необходимости добавьте Eruda.
   options.eruda && void import('eruda').then(({ default: eruda }) => {
     eruda.init();
     eruda.position({ x: window.innerWidth - 50, y: 0 });
   });
 
-  // Telegram for macOS has a ton of bugs, including cases, when the client doesn't
-  // even response to the "web_app_request_theme" method. It also generates an incorrect
-  // event for the "web_app_request_safe_area" method.
+  // В Telegram для macOS полно багов, в том числе случаев, когда клиент даже не
+  // отвечает на метод «web_app_request_theme». Он также генерирует некорректное
+  // событие для метода «web_app_request_safe_area».
   if (options.mockForMacOS) {
     let firstThemeSent = false;
     mockTelegramEnv({
@@ -57,7 +57,7 @@ export async function init(options: {
     });
   }
 
-  // Mount all components used in the project.
+  // Подключаем все компоненты, используемые в проекте.
   backButton.mount.ifAvailable();
   initData.restore();
 

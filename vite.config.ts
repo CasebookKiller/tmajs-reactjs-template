@@ -5,7 +5,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/reactjs-template/',
+  base: '/tmajs-reactjs-template/',
   css: {
     preprocessorOptions: {
       scss: {
@@ -14,14 +14,14 @@ export default defineConfig({
     },
   },
   plugins: [
-    // Allows using React dev server along with building a React application with Vite.
+    // Позволяет использовать React dev server наряду с созданием приложения React с помощью Vite.
     // https://npmjs.com/package/@vitejs/plugin-react-swc
     react(),
-    // Allows using the compilerOptions.paths property in tsconfig.json.
+    // Позволяет использовать свойство compiler Options.paths в файле tsconfig.json.
     // https://www.npmjs.com/package/vite-tsconfig-paths
     tsconfigPaths(),
-    // Creates a custom SSL certificate valid for the local machine.
-    // Using this plugin requires admin rights on the first dev-mode launch.
+    // Создаёт собственный SSL-сертификат, действительный для локального компьютера.
+    // Для использования этого плагина требуются права администратора при первом запуске в режиме разработки.
     // https://www.npmjs.com/package/vite-plugin-mkcert
     process.env.HTTPS && mkcert(),
   ],
@@ -31,7 +31,7 @@ export default defineConfig({
   },
   publicDir: './public',
   server: {
-    // Exposes your dev server and makes it accessible for the devices in the same network.
+    // Предоставляет доступ к вашему серверу разработки и делает его доступным для устройств в той же сети.
     host: true,
   },
 });

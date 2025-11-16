@@ -6,6 +6,10 @@ import { LaunchParamsPage } from '@/pages/LaunchParamsPage.tsx';
 import { ThemeParamsPage } from '@/pages/ThemeParamsPage.tsx';
 import { TONConnectPage } from '@/pages/TONConnectPage/TONConnectPage';
 
+import { MissionsPage } from '@/pages/MissionsPage/MissionsPage';
+import { SupabasePage } from '@/pages/SupabasePage.tsx';
+
+
 interface Route {
   path: string;
   Component: ComponentType;
@@ -41,4 +45,6 @@ export const routes: Route[] = [
       </svg>
     ),
   },
+  { path: '/missions', Component: MissionsPage, title: 'Missions' },
+  { path: '/supabase', Component: SupabasePage, title: 'Supabase' },
 ];
