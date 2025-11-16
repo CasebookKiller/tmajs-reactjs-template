@@ -63,7 +63,7 @@ if (import.meta.env.DEV) {
         // ```
         ['tgWebAppData', new URLSearchParams([
           ['auth_date', (new Date().getTime() / 1000 | 0).toString()],
-          ['hash', import.meta.env.VITE_MOCK_HASG || 'some-hash'],
+          ['hash', import.meta.env.VITE_MOCK_HASH || 'some-hash'],
           ['signature', import.meta.env.VITE_MOCK_SIGNATURE || 'some-signature'],
           ['start_param', import.meta.env.VITE_MOCK_START_PARAM || 'debug'],
           ['chat_instance', import.meta.env.VITE_MOCK_CHAT_INSTANCE || '8428209589180549439'],
