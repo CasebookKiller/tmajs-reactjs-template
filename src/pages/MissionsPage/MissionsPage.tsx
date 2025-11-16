@@ -105,14 +105,6 @@ export const MissionsPage: FC = () => {
     justifyContent: 'left'
   }
 
-  /*
-<Cell
-              before={<Image src={tonSvg} style={{ backgroundColor: '#007AFF' }}/>}
-              subtitle="Подключите свой кошелек TON"
-            >
-              TON Connect
-            </Cell>
-  */
   const items = missions.map((mission) => {
     const { id, title, after, cb } = mission;
     return (
@@ -132,8 +124,8 @@ export const MissionsPage: FC = () => {
             style={after === 'success' ? cssSuccess : cssDefault}
             onClick={()=>{cb?.()}}
           >
-          <div className="flex flex-1" style={{width: '100%'}}>
-            <div className="flex-left-80">{title}</div>
+          <div className='flex flex-1' style={{width: '100%'}}>
+            <div className='flex-left-80'>{title}</div>
           </div>
           </Button>
         </Cell>
@@ -141,7 +133,7 @@ export const MissionsPage: FC = () => {
   });
 
   return (
-    <div className="MissionsPage">
+    <div className='MissionsPage'>
       <List>
         {items}
       </List>

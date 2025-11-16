@@ -28,7 +28,7 @@ export const TONConnectPage: FC = () => {
       <Page>
         <Placeholder
           className={e('placeholder')}
-          header="TON Connect"
+          header='TON Connect'
           description={
             <>
               <Text>
@@ -61,7 +61,7 @@ export const TONConnectPage: FC = () => {
             <Section>
               <Cell
                 before={
-                  <Avatar src={wallet.imageUrl} alt="Логотип провайдера" width={60} height={60}/>
+                  <Avatar src={wallet.imageUrl} alt='Логотип провайдера' width={60} height={60}/>
                 }
                 after={<Navigation>О кошельке</Navigation>}
                 subtitle={wallet.appName}
@@ -70,14 +70,14 @@ export const TONConnectPage: FC = () => {
                   openLink(wallet.aboutUrl);
                 }}
               >
-                <Title level="3">{wallet.name === "Wallet"? "Кошелёк" : wallet.name}</Title>
+                <Title level='3'>{wallet.name === 'Wallet'? 'Кошелёк' : wallet.name}</Title>
               </Cell>
             </Section>
             <TonConnectButton className={e('button-connected')}/>
           </>
         )}
         <DisplayData
-          header="Учетная запись"
+          header='Учетная запись'
           rows={[
             { title: 'Адрес', value: address },
             { title: 'Цепь', value: chain },
@@ -85,7 +85,7 @@ export const TONConnectPage: FC = () => {
           ]}
         />
         <DisplayData
-          header="Устройство"
+          header='Устройство'
           rows={[
             { title: 'Наименование Приложения', value: appName },
             { title: 'Версия Приложения', value: appVersion },

@@ -1,13 +1,12 @@
 /**
- * @returns A complete public URL prefixed with the public static assets base
- * path.
- * @param path - path to prepend prefix to
+ * @returns Полный общедоступный URL-адрес с префиксом общедоступной базы статических ресурсов.
+ * @param path - путь к добавлению префикса
  */
 export function publicUrl(path: string): string {
-  // The baseUrl must be ending with the slash. The reason is if the baseUrl will
-  // equal to "/my-base", then passing the path equal to "tonconnect-manifest.json" will not
-  // give us the expected result, it will actually be "/tonconnect-manifest.json", but the expected
-  // one is "/my-base/tonconnect-manifest.json". This is due to the URL constructor.
+  // baseUrl должен заканчиваться косой чертой. Причина в том, что если baseUrl будет
+  // равен "/my-base", то передача пути, равного "tonconnect-manifest.json", не будет выполняться.
+  // выдайте нам ожидаемый результат, на самом деле это будет "/tonconnect-manifest.json", но ожидаемый
+  // один из них - "/my-base/tonconnect-manifest.json". Это связано с конструктором URL.
   let baseUrl = import.meta.env.BASE_URL;
   if (!baseUrl.endsWith('/')) {
     baseUrl += '/';
@@ -17,14 +16,14 @@ export function publicUrl(path: string): string {
   try {
     new URL(baseUrl);
     isBaseAbsolute = true;
-  } catch { /* empty */
+  } catch { /* пусто */
   }
 
   return new URL(
-    // The path is not allowed to be starting with the slash as long as it will break the
-    // base URL. For instance, having the "/my-base/" base URL and path
-    // equal to "/tonconnect-manifest.json", we will not get the expected result like
-    // "/my-base/tonconnect-manifest.json", but "/tonconnect-manifest.json".
+    // Путь не должен начинаться с косой черты, так как это приведет к разрыву
+    // базового URL. Например, если базовый URL и путь "/my-base/"
+    // равно "/tonconnect-manifest.json", мы получим ожидаемый результат не как
+    // "/my-base/tonconnect-manifest.json", а как "/tonconnect-manifest.json".
     path.replace(/^\/+/, ''),
     isBaseAbsolute
       ? baseUrl

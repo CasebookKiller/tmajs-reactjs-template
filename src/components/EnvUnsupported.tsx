@@ -19,12 +19,12 @@ export function EnvUnsupported() {
       platform={['macos', 'ios'].includes(platform) ? 'ios' : 'base'}
     >
       <Placeholder
-        header="Ой"
-        description="Вы используете слишком старую версию Telegram для запуска этого приложения"
+        header='Ой'
+        description='Вы используете слишком старую версию Telegram для запуска этого приложения'
       >
         <img
-          alt="Telegram стикер"
-          src="https://xelene.me/telegram.gif"
+          alt='Telegram стикер'
+          src='https://xelene.me/telegram.gif'
           style={{ display: 'block', width: '144px', height: '144px' }}
         />
       </Placeholder>

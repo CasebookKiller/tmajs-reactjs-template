@@ -9,9 +9,9 @@ export interface ElemFn {
 }
 
 /**
- * Applies mods to the specified element.
- * @param element - element name.
- * @param mod - mod to apply.
+ * Применяет изменения к указанному элементу.
+ * @param element - наименование элемента.
+ * @param mod - мод для применения.
  */
 function applyMods(element: string, mod: any): string {
   if (Array.isArray(mod)) {
@@ -27,18 +27,18 @@ function applyMods(element: string, mod: any): string {
 }
 
 /**
- * Computes final classname for the specified element.
- * @param element - element name.
- * @param mods - mod to apply.
+ * Вычисляет окончательное имя класса для указанного элемента.
+ * @param element - наименованиеэлемента.
+ * @param mods - мод для применения.
  */
 function computeClassnames(element: string, ...mods: any): string {
   return classNames(element, applyMods(element, mods));
 }
 
 /**
- * @returns A tuple, containing two functions. The first one generates classnames list for the
- * block, the second one generates classnames for its elements.
- * @param block - BEM block name.
+ * @returns Кортеж, содержащий две функции. Первая генерирует список имен классов для блока,
+ * вторая генерирует имена классов для его элементов.
+ * @param block - Имя блока BEM.
  */
 export function bem(block: string): [BlockFn, ElemFn] {
   return [

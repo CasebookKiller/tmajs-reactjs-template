@@ -7,7 +7,7 @@ import { publicUrl } from '@/helpers/publicUrl.ts';
 function ErrorBoundaryError({ error }: { error: unknown }) {
   return (
     <div>
-      <p>An unhandled error occurred:</p>
+      <p>Произошла необработанная ошибка:</p>
       <blockquote>
         <code>
           {error instanceof Error

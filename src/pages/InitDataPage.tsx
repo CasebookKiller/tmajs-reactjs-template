@@ -56,12 +56,12 @@ export const InitDataPage: FC = () => {
     return (
       <Page>
         <Placeholder
-          header="Ой"
-          description="Приложение было запущено без данных инициализации"
+          header='Ой'
+          description='Приложение было запущено без данных инициализации'
         >
           <img
-            alt="Наклейка Telegram"
-            src="https://xelene.me/telegram.gif"
+            alt='Наклейка Telegram'
+            src='https://xelene.me/telegram.gif'
             style={{ display: 'block', width: '144px', height: '144px' }}
           />
         </Placeholder>

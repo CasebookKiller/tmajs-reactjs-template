@@ -3,15 +3,15 @@ export function isRecord(v: unknown): v is Record<string, unknown> {
 }
 
 /**
- * Function which joins passed values with space following these rules:
- * 1. If value is non-empty string, it will be added to output.
- * 2. If value is object, only those keys will be added, which values are truthy.
- * 3. If value is array, classNames will be called with this value spread.
- * 4. All other values are ignored.
+ * Функция, которая соединяет переданные значения с пробелом в соответствии со следующими правилами:
+ * 1. Если значение является непустой строкой, оно будет добавлено в выходные данные.
+ * 2. Если значением является object, то будут добавлены только те ключи, значения которых являются истинными.
+ * 3. Если значение равно array, то classNames будут вызываться с учетом этого разброса значений.
+ * 4. Все остальные значения игнорируются.
  *
- * You can find this function to similar one from the package {@link https://www.npmjs.com/package/classnames|classnames}.
- * @param values - values array.
- * @returns Final class name.
+ * Вы можете найти эту функцию, аналогичной той, что есть в пакете {@link https://www.npmjs.com/package/classnames|classnames}.
+ * @param values - массив значений.
+ * @returns Окончательные имена классов.
  */
 export function classNames(...values: any[]): string {
   return values
@@ -43,7 +43,7 @@ type UnionRequiredKeys<U> = U extends U
 type UnionOptionalKeys<U> = Exclude<UnionStringKeys<U>, UnionRequiredKeys<U>>;
 
 export type MergeClassNames<Tuple extends any[]> =
-// Removes all types from union that will be ignored by the mergeClassNames function.
+// Удаляет из union все типы, которые будут игнорироваться функцией mergeClassNames.
   Exclude<Tuple[number], number | string | null | undefined | any[] | boolean> extends infer Union
     ?
     & { [K in UnionRequiredKeys<Union>]: string; }
@@ -51,11 +51,11 @@ export type MergeClassNames<Tuple extends any[]> =
     : never;
 
 /**
- * Merges two sets of classnames.
+ * Объединяет два набора имен классов.
  *
- * The function expects to pass an array of objects with values that could be passed to
- * the `classNames` function.
- * @returns An object with keys from all objects with merged values.
+ * Функция ожидает передачи массива объектов со значениями, которые могут быть переданы в
+ * функцию `classNames`.
+ * @returns Объект, содержащий ключи от всех объектов с объединенными значениями.
  * @see classNames
  */
 export function mergeClassNames<T extends any[]>(...partials: T): MergeClassNames<T> {

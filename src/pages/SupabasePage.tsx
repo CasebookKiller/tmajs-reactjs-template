@@ -22,9 +22,9 @@ export const SupabasePage: FC = () => {
 
   async function getIds() {
     const result: PostgrestSingleResponse<TGRec[]> = await SBase
-      .from("ids")
+      .from('ids')
       .select()
-      .lt("id", 10); //первые 10 записей
+      .lt('id', 10); //первые 10 записей
 
     console.log('%cids: %o', `color: firebrick; background-color: white`, result.data);  
     
@@ -45,7 +45,7 @@ export const SupabasePage: FC = () => {
   return (
     <>
       <SBaseContext.Provider value={Supabase}>
-        <div className="SupabasePage">
+        <div className='SupabasePage'>
           {ids.map((id) => (
             <Cell
               key={id.id}

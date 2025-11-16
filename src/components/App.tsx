@@ -16,7 +16,7 @@ export function App() {
       <HashRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
         <Routes>
           {routes.map((route) => <Route key={route.path} {...route} />)}
-          <Route path="*" element={<Navigate to="/"/>}/>
+          <Route path='*' element={<Navigate to='/'/>}/>
         </Routes>
       </HashRouter>
     </AppRoot>
